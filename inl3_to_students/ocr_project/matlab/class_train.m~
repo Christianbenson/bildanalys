@@ -1,0 +1,15 @@
+function [classification_data] = class_train(X,Y)
+
+classification_data = {X;Y};
+end
+
+function y = classify(x,classification_data)
+    %find nearest neighbour
+    nearest_neighbour_distance = intmax;
+    nearest_neighbour_class = 0;
+    for i = 1:size(classification_data{1,1},2)
+        distances = x - classification_data{1,1}(:,1)
+        distances = distances.^2
+        dist
+
+end
