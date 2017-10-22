@@ -18,7 +18,7 @@ n = M*N;
 
 mu0 = mu_background;
 mu1 = mu_chamber;
-lambda = 0.1;
+lambda = 0.0009;
 
 Neighbours = edges4connected(M,N);
 i = Neighbours(:,1);
@@ -33,6 +33,6 @@ tic
 Theta = reshape(Theta,M,N);
 Theta = double(Theta);
 toc
-
+im = Theta
 subplot(2,1,2)
-imshow(Theta)
+imshow(im)

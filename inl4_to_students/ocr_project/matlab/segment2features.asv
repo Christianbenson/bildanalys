@@ -40,20 +40,21 @@ feature5 = sum(C(1:size(C,1), xcentre));
 feature6 = nnz(C);
 
 %Attempt at using zoning-algorithm to get features
-gridSize = 5;
+gridSize = 10;
 zoneFeatures = zeros(16,1);
 zoneFeatures2 = zeros(16,1);
 k = 1;
 [Y X] = size(B);
-if(ycentre > Y - 1 - 2*gridSize) 
-    ycentre = Y - 1 - 2*gridSize;
-elseif(ycentre < 1 + 2*gridSize)
+if(ycentre > Y - 2*gridSize) 
+    ycentre = Y - 2*gridSize;
+end
+if(ycentre < 1 + 2*gridSize)
     ycentre = 1 + 2*gridSize;
 end
-
-if(xcentre > X - 1 - 2*gridSize)
-    xcentre = X - 1 - 2*gridSize;
-elseif(xcentre < 1 + 2*gridSize)
+if(xcentre > X - 2*gridSize)
+    xcentre = X - 2*gridSize;
+end
+if(xcentre < 1 + 2*gridSize)
     xcentre = 1 + 2*gridSize;
 end
 
@@ -61,8 +62,8 @@ for i = -2:1
     for j = -2:1
         zoneFeatures(k) = sum(sum(B(ycentre+i*gridSize:ycentre+(i+1)*gridSize, xcentre+j*gridSize:xcentre+(j+1)*gridSize)));
         zoneFeatures2(k) = sum(sum(C(ycentre+i*gridSize:ycentre+(i+1)*gridSize, xcentre+j*gridSize:xcentre+(j+1)*gridSize)));
+        
         k = k+1;
     end
 end
-
-x = [feature1;feature2;feature3;feature4;feature5;feature6;zoneFeatures;zoneFeatures2];
+x = [feature1;feature2;feature3;feature4;feature5;feature6;zoneFeatures];
